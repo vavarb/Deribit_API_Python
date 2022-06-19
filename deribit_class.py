@@ -31,6 +31,7 @@ class Deribit:
         try:
             out = datetime.now().strftime("\n[%Y/%m/%d, %H:%M:%S] ") + str(msg)
             list_monitor_log.append(str(msg))
+            print(str(msg))
             with open(filename, 'a') as logwriter_file:
                 logwriter_file.write(str(out))
 
@@ -639,6 +640,14 @@ class CredentialsSaved:
     @staticmethod
     def testnet_saved_tru_or_false():
         from lists import list_monitor_log
+        import os
+
+        if os.path.isfile('testnet_true_or_false_spread.txt') is False:
+            with open('testnet_true_or_false_spread.txt', 'a') as api_key_save_file:
+                api_key_save_file.write('True')
+        else:
+            pass
+
         with open('testnet_true_or_false_spread.txt', 'r') as testnet_saved_tru_or_false_file:
             testnet_saved_tru_or_false_file_read = str(testnet_saved_tru_or_false_file.read())
         if testnet_saved_tru_or_false_file_read == 'True':
